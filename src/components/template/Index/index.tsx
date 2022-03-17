@@ -1,16 +1,20 @@
 import { css } from '@emotion/react'
-import { Button } from '~/components/shared/Button'
+import { Button } from '~/src/components/shared/Button'
 
-const test = css`
-  // background: red;
+const main = css`
+  background: #f0f0f0;
+`
+
+const title = css`
+  text-align: center;
 `
 
 export const IndexTemplate = (): JSX.Element => {
   return (
     <>
-      <main>
-        <h1>typing game</h1>
-        <div css={test}>
+      <main css={main}>
+        <h1 css={title}>typing game</h1>
+        <div>
           <Button path="/play">遊ぶ(あそぶ)</Button>
           <Button path="/ranking">ランキング</Button>
           <Button path="/setting">設定(せってい)</Button>

@@ -2,22 +2,39 @@ import { css } from '@emotion/react'
 import Link from 'next/link'
 import { ComponentPropsWithRef, ForwardedRef } from 'react'
 
+// const a = css`
+//   background: green;
+//   &:after {
+//     content: "";
+//     width: 200px;
+//     height: 200px;
+//     display: block;
+//     background: red;
+//   }
+// `;
+
 const button = css`
   border: solid 1px #f0f0f0;
   width: 300px;
-  background: red;
+  height: 80px;
+  text-align: center;
+  line-height: 80px;
+  background: gray;
+  margin: 0 auto;
 `;
 
 export const Button = ({
   children,
   path,
-  ...props
 }): JSX.Element => {
 
   return (
-    <Link css={button} href={path} {...props}>
+    <Link href={path}>
       <a>
+        <div css={button}>
+
         {children}
+        </div>
       </a>
     </Link>
   )

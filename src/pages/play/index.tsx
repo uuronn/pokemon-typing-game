@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import PlayTemplate from '~/components/template/Play'
+import PlayTemplate from '~/src/components/template/Play'
 
 const play: NextPage = () => <PlayTemplate />
 

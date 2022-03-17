@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import RankingTemplate from '~/components/template/Ranking'
+import RankingTemplate from '~/src/components/template/Ranking'
 
 const ranking: NextPage = () => <RankingTemplate />
 

@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import SettingTemplate from '~/components/template/Setting'
+import SettingTemplate from '~/src/components/template/Setting'
 
 const setting: NextPage = () => <SettingTemplate />
 
