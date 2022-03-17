@@ -14,49 +14,46 @@ import { ComponentPropsWithRef, ForwardedRef } from 'react'
 // `;
 
 const button = css`
-  border: solid 1px #f0f0f0;
-  width: 300px;
-  height: 80px;
+width: 200px;
+  padding: 10px;
+  border: solid 1px #000;
+  border-radius: 16px;
   text-align: center;
-  line-height: 80px;
-  background: gray;
-  margin: 0 auto;
+  transition: 0.3s;
+  text-decoration: none;
+  cursor: pointer;
+  background: red;
+
+
+  &:hover {
+    // background: green;
+  }
 `;
 
+export interface ButtonProps extends ComponentPropsWithRef<"a"> {
+  forwardRef?: ForwardedRef<HTMLAnchorElement>;
+  path: string;
+}
+
 export const Button = ({
+  forwardRef,
   children,
   path,
-}): JSX.Element => {
+  ...props
+}: ButtonProps): JSX.Element => {
 
   return (
     <Link href={path}>
-      <a>
-        <div css={button}>
-
+      <a
+        css={button}
+        ref={forwardRef}
+        {...props}
+      >
+        
         {children}
-        </div>
       </a>
     </Link>
   )
 }
 
-// export interface ButtonProps extends ComponentPropsWithRef<"Link"> {
-//   forwardRef?: ForwardedRef<HTMLLinkElement>;
-//   path: string;
-// }
-
-// export const Button = ({
-//   forwardRef,
-//   children,
-//   path,
-//   ...props
-// }: ButtonProps): JSX.Element => {
-
-//   return (
-//     <Link href={path} ref={forwardRef} {...props}>
-//       <a>
-//         {children}
-//       </a>
-//     </Link>
-//   )
-// }
+export default Button;
