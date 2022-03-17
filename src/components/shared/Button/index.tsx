@@ -1,6 +1,6 @@
 import { css } from '@emotion/react'
 import Link from 'next/link'
-// import { ComponentPropsWithRef, ForwardedRef } from 'react'
+import { ComponentPropsWithRef, ForwardedRef } from 'react'
 
 const button = css`
   border: solid 1px #f0f0f0;
@@ -23,8 +23,8 @@ export const Button = ({
   )
 }
 
-// export interface ButtonProps extends ComponentPropsWithRef<""> {
-//   forwardRef?: ForwardedRef;
+// export interface ButtonProps extends ComponentPropsWithRef<"Link"> {
+//   forwardRef?: ForwardedRef<HTMLLinkElement>;
 //   path: string;
 // }
 

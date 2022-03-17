@@ -12,8 +12,8 @@ export const IndexTemplate = (): JSX.Element => {
         <h1>typing game</h1>
         <div css={test}>
           <Button path="/play">遊ぶ(あそぶ)</Button>
-          <Button path="~/components/template/ErrorPage">ランキング</Button>
-          <Button path="~/components/template/ErrorPage">設定(せってい)</Button>
+          <Button path="/ranking">ランキング</Button>
+          <Button path="/setting">設定(せってい)</Button>
         </div>
       </main>
     </>
