@@ -12,6 +12,11 @@ const typeText = css`
 
 export const PlayTemplate = (): JSX.Element => {
   const [value, setValue] = useState<string>("")
+  const [monsterList, setMonsterList] = useState(monster)
+  console.log(...monsterList)
+
+  // is.questions.splice(Math.floor(Math.random()*this.questions.length),1)[0]
+
   console.log(monster[0].romaji.toLowerCase())
   
   console.log(value.toLowerCase())
@@ -24,6 +29,7 @@ export const PlayTemplate = (): JSX.Element => {
     }
 
     // if(e.code === value.indexOf(monster[0].romaji.indexOf()))
+    
     
     const code = e.code;
     const key = e.key;
@@ -51,6 +57,18 @@ export const PlayTemplate = (): JSX.Element => {
       <p>{monster[0].japanese}</p>
       <p>{monster[0].romaji}</p>
       <p css={typeText}>タイプ文字: {value}</p>
+      <ul>
+        {monster.map((monsterItem, i) => {
+          return (
+            <li key={i}>
+              <Image src={monsterItem.imagePath} alt={monsterItem.japanese} width={200} height={200} />
+              <p>{monsterItem.japanese}</p>
+              <p>{monsterItem.romaji}</p>
+            </li>
+            // <MindCard mindItem={mindItem} key={i} keyProps={i} updateRect={updateRect}/>
+          )
+        })}
+      </ul>
     </div>
   )
 }
