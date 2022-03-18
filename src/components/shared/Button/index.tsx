@@ -2,31 +2,20 @@ import { css } from '@emotion/react'
 import Link from 'next/link'
 import { ComponentPropsWithRef, ForwardedRef } from 'react'
 
-// const a = css`
-//   background: green;
-//   &:after {
-//     content: "";
-//     width: 200px;
-//     height: 200px;
-//     display: block;
-//     background: red;
-//   }
-// `;
-
 const button = css`
-width: 200px;
-  padding: 10px;
-  border: solid 1px #000;
-  border-radius: 16px;
+  display: block;
+  width: 200px;
+  border: solid 2px #000;
+  margin: 0 auto;
+  border-radius: 10px;
   text-align: center;
   transition: 0.3s;
-  text-decoration: none;
-  cursor: pointer;
-  background: red;
-
+  background: #f0f0f0;
+  padding: 10px;
+  user-select: none;
 
   &:hover {
-    // background: green;
+    background: green;
   }
 `;
 
@@ -49,7 +38,6 @@ export const Button = ({
         ref={forwardRef}
         {...props}
       >
-        
         {children}
       </a>
     </Link>
