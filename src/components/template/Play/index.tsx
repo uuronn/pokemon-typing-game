@@ -2,6 +2,7 @@ import { css } from '@emotion/react'
 import { monster } from './monster'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
+import { MonsterCard } from '~/src/components/shared/MonsterCard'
 
 const typeText = css`
   font-size: 20px;
@@ -9,6 +10,12 @@ const typeText = css`
   border: solid 1px #000;
   width: 500px;
 `;
+
+export interface MonsterCardProps {
+  imagePath: any
+  japanese: string
+  romaji: string
+}
   
 export const PlayTemplate = (): JSX.Element => {
   const [value, setValue] = useState<string>("")
@@ -49,20 +56,17 @@ export const PlayTemplate = (): JSX.Element => {
       {/* <Image src={monster[0].imagePath} alt="プリン" width={200} height={200} />
       <p>{monster[0].japanese}</p> */}
       {/* <p>{monster[0].romaji}</p> */}
-      <p>{missCounter}</p>
-      <p>aa:{question}</p>
+      <p>ミスした数: {missCounter}</p>
+      <p>問題: {question}</p>
       <p css={typeText}>タイプ文字: {value}</p>
       <ul>
-        {/* {monsterList.map((monsterItem, i) => {
+         {monsterList.map((monsterItem: MonsterCardProps, i: number) => {
           return (
             <li key={i}>
-              <Image src={monsterItem.imagePath} alt={monsterItem.japanese} width={200} height={200} />
-              <p>{monsterItem.japanese}</p>
-              <p>{monsterItem.romaji}</p>
+              <MonsterCard monsterItem={monsterItem} />
             </li>
-            // <MindCard mindItem={mindItem} key={i} keyProps={i} updateRect={updateRect}/>
           )
-        })} */}
+        })}
       </ul>
     </div>
   )
