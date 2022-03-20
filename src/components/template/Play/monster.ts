@@ -5,11 +5,13 @@ export const monster = [
     romaji: "pulin"
   },
   {
-    imagePath: "/images/pulin.svg",
-    romaji: "test"
+    imagePath: require("~/images/monster/yadon.svg"),
+    japanese: "ヤドン",
+    romaji: "yadon"
   },
   {
-    imagePath: "/images/pulin.svg",
-    romaji: "test"
+    imagePath: require("~/images/monster/menokurage.svg"),
+    japanese: "メノクラゲ",
+    romaji: "menokurage"
   },
 ]
