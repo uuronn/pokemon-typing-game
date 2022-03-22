@@ -1,6 +1,5 @@
 import { css } from "@emotion/react";
-import { monster } from "./monster";
-import Image from "next/image";
+import { monsters } from "./monster";
 import { useEffect, useState } from "react";
 import { MonsterCard } from "~/src/components/shared/MonsterCard";
 
@@ -19,23 +18,25 @@ export interface Monster {
 
 export const PlayTemplate = (): JSX.Element => {
   const [value, setValue] = useState<string>("");
-  const [monsterList, setMonsterList] = useState(monster);
   const [missCounter, setmissCounter] = useState(0);
-  const [test, setTest] = useState<Monster>();
-  let question = monster[0].romaji.split("");
+  const [monster, setMonster] = useState<Monster>();
+  const [res, setRes] = useState<Monster[]>();
+  const [question, setQuestion] = useState<string[]>([]);
+  const [test, setTest] = useState<boolean>(false);
 
   const keyDown = (e: any) => {
     const code = e.code;
     const key = e.key;
 
-    if (key !== question[0]) {
-      setmissCounter((count) => count + 1);
-      return;
-    }
+    // if (key !== question) {
+    //   console.log(question);
+    //   setmissCounter((count) => count + 1);
+    //   return;
+    // }
 
-    if (key === question[0]) {
-      question.splice(0, 1);
-    }
+    // if (key === question) {
+    //   question.splice(0, 1);
+    // }
 
     setValue((val) => val + key);
   };
@@ -43,36 +44,45 @@ export const PlayTemplate = (): JSX.Element => {
   useEffect(() => {
     window.addEventListener("keydown", keyDown);
     console.log("success");
-    setTest(monster[Math.floor(Math.random() * monster.length)]);
+    setMonster(monsters[Math.floor(Math.random() * monsters.length)]);
   }, []);
 
   useEffect(() => {
-    if (monsterList[0].romaji === value) {
+    if (monster) {
+      setQuestion(monster.romaji.split(""));
+    }
+  }, [monster]);
+
+  useEffect(() => {
+    if (monster?.romaji === value) {
+      const snapshot = monsters.filter(
+        (snapshot) => snapshot.romaji !== monster.romaji
+      );
+      setRes([...snapshot]);
       alert("sucsees");
-      setValue("");
     }
   }, [value]);
+
+  useEffect(() => {
+    if (res) {
+      setMonster(res[Math.floor(Math.random() * monsters.length)]);
+    }
+    setValue("");
+  }, [res]);
+
+  const TestButton = () => {
+    setTest(true);
+    console.log(question);
+  };
 
   return (
     <div>
       <h1>タイピングページ</h1>
-      {/* <Image src={monster[0].imagePath} alt="プリン" width={200} height={200} />
-      <p>{monster[0].japanese}</p> */}
-      {/* <p>{monster[0].romaji}</p> */}
+      <button onClick={TestButton}>TestButton</button>
       <p>ミスした数: {missCounter}</p>
       <p>問題: {question}</p>
       <p css={typeText}>タイプ文字: {value}</p>
-      {/* <div>{test}</div> */}
-      {test && <MonsterCard monsterItem={test} />}
-      <ul>
-        {monsterList.map((monsterItem: Monster, i: number) => {
-          return (
-            <li key={i}>
-              <MonsterCard monsterItem={monsterItem} />
-            </li>
-          );
-        })}
-      </ul>
+      {monster && <MonsterCard monsterItem={monster} />}
     </div>
   );
 };
