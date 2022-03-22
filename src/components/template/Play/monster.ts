@@ -2,17 +2,17 @@ import { Monster } from ".";
 
 export const monsters: Monster[] = [
   {
-    imagePath: "/monster/pulin.svg",
+    imagePath: "/images/monsters/pulin.svg",
     japanese: "プリン",
     romaji: "pulin"
   },
   {
-    imagePath: "/monster/yadon.svg",
+    imagePath: "/images/monsters/yadon.svg",
     japanese: "ヤドン",
     romaji: "yadon"
   },
   {
-    imagePath: "/monster/menokurage.svg",
+    imagePath: "/images/monsters/menokurage.svg",
     japanese: "メノクラゲ",
     romaji: "menokurage"
   }
