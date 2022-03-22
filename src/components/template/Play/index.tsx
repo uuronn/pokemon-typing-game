@@ -1,8 +1,8 @@
-import { css } from '@emotion/react'
-import { monster } from './monster'
-import Image from 'next/image'
-import { useEffect, useState } from 'react'
-import { MonsterCard } from '~/src/components/shared/MonsterCard'
+import { css } from "@emotion/react";
+import { monster } from "./monster";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { MonsterCard } from "~/src/components/shared/MonsterCard";
 
 const typeText = css`
   font-size: 20px;
@@ -11,44 +11,47 @@ const typeText = css`
   width: 500px;
 `;
 
-export interface MonsterCardProps {
-  imagePath: any
-  japanese: string
-  romaji: string
+export interface Monster {
+  imagePath: string;
+  japanese: string;
+  romaji: string;
 }
-  
+
 export const PlayTemplate = (): JSX.Element => {
-  const [value, setValue] = useState<string>("")
-  const [monsterList, setMonsterList] = useState(monster)
-  const [missCounter, setmissCounter] = useState(0)
-  let question = monster[0].romaji.split("")
+  const [value, setValue] = useState<string>("");
+  const [monsterList, setMonsterList] = useState(monster);
+  const [missCounter, setmissCounter] = useState(0);
+  const [test, setTest] = useState<Monster>();
+  let question = monster[0].romaji.split("");
 
   const keyDown = (e: any) => {
     const code = e.code;
     const key = e.key;
 
-    if(key !== question[0]) {
-      setmissCounter(count => count + 1)
+    if (key !== question[0]) {
+      setmissCounter((count) => count + 1);
       return;
     }
 
-    if(key === question[0]) {
-      question.splice(0, 1)
+    if (key === question[0]) {
+      question.splice(0, 1);
     }
 
-    setValue(val => val + key)
-  }
+    setValue((val) => val + key);
+  };
 
   useEffect(() => {
-    window.addEventListener('keydown', keyDown);
-  }, [])
+    window.addEventListener("keydown", keyDown);
+    console.log("success");
+    setTest(monster[Math.floor(Math.random() * monster.length)]);
+  }, []);
 
   useEffect(() => {
-    if(monsterList[0].romaji === value) {
-      alert("sucsees")
-      setValue("")
+    if (monsterList[0].romaji === value) {
+      alert("sucsees");
+      setValue("");
     }
-  }, [value])
+  }, [value]);
 
   return (
     <div>
@@ -59,17 +62,19 @@ export const PlayTemplate = (): JSX.Element => {
       <p>ミスした数: {missCounter}</p>
       <p>問題: {question}</p>
       <p css={typeText}>タイプ文字: {value}</p>
+      {/* <div>{test}</div> */}
+      {test && <MonsterCard monsterItem={test} />}
       <ul>
-         {monsterList.map((monsterItem: MonsterCardProps, i: number) => {
+        {monsterList.map((monsterItem: Monster, i: number) => {
           return (
             <li key={i}>
               <MonsterCard monsterItem={monsterItem} />
             </li>
-          )
+          );
         })}
       </ul>
     </div>
-  )
-}
+  );
+};
 
-export default PlayTemplate
+export default PlayTemplate;
