@@ -1,17 +1,19 @@
-export const monster = [
+import { Monster } from ".";
+
+export const monsters: Monster[] = [
   {
-    imagePath: require("~/images/monster/pulin.svg"),
+    imagePath: "/images/monsters/pulin.svg",
     japanese: "プリン",
     romaji: "pulin"
   },
   {
-    imagePath: require("~/images/monster/yadon.svg"),
+    imagePath: "/images/monsters/yadon.svg",
     japanese: "ヤドン",
     romaji: "yadon"
   },
   {
-    imagePath: require("~/images/monster/menokurage.svg"),
+    imagePath: "/images/monsters/menokurage.svg",
     japanese: "メノクラゲ",
     romaji: "menokurage"
-  },
-]
+  }
+];
