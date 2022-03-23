@@ -4,6 +4,7 @@ import Image from "next/image";
 export const MonsterCard = ({ monsterItem }: Monster): JSX.Element => {
   return (
     <>
+      <p>fdf</p>
       <Image
         src={monsterItem.imagePath}
         alt={monsterItem.japanese}
