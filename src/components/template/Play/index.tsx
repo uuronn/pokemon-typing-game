@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
-import { monsterList } from "./monsterList";
+import { pokemonList } from "./pokemonList";
 import { useEffect, useState } from "react";
-import { MonsterCard } from "~/src/components/shared/MonsterCard";
+import { PokemonCard } from "~/src/components/shared/PokemonCard";
 
 const typeText = css`
   font-size: 20px;
@@ -10,7 +10,7 @@ const typeText = css`
   width: 500px;
 `;
 
-export interface Monster {
+export interface Pokemon {
   imagePath: string;
   japanese: string;
   romaji: string;
@@ -18,14 +18,13 @@ export interface Monster {
 
 export const PlayTemplate = (): JSX.Element => {
   const [keyValue, setKeyValue] = useState<string>();
-  // const [monster, setMonster] = useState<Monster>();
-  const [newMonster, setNewMonster] = useState<Monster[]>([]);
-  const [monsterName, setMonsterName] = useState<string[]>([]);
+  const [pokemon, setPokemon] = useState<Pokemon>();
+  const [newPokemon, setNewPokemon] = useState<Pokemon[]>([]);
+  const [pokemonName, setPokemonName] = useState<string[]>([]);
   const [missCounter, setMissCounter] = useState<number>(0);
   const [answerValue, setAnswerValue] = useState<string>("");
   const [currentNumber, setCurrentNumber] = useState<number>(0);
   const [test, setTest] = useState<boolean>(false);
-  const [pokemon, setPokemon] = useState<Monster>();
 
   const keyDown = (e: KeyboardEvent) => {
     setKeyValue(e.key);
@@ -33,29 +32,22 @@ export const PlayTemplate = (): JSX.Element => {
 
   useEffect(() => {
     window.addEventListener("keydown", keyDown);
-    console.log(
-      "monsterList",
-      monsterList[Math.floor(Math.random() * monsterList.length)]
-    );
-
-    setPokemon(monsterList[Math.floor(Math.random() * monsterList.length)]);
+    setPokemon(pokemonList[Math.floor(Math.random() * pokemonList.length)]);
   }, []);
 
   useEffect(() => {
     if (pokemon) {
-      setMonsterName(pokemon.romaji.split(""));
+      setPokemonName(pokemon.romaji.split(""));
     }
   }, [pokemon]);
 
   useEffect(() => {
-    if (keyValue !== "" && monsterName[currentNumber] !== keyValue) {
+    if (keyValue !== "" && pokemonName[currentNumber] !== keyValue) {
       setMissCounter((val) => val + 1);
       setKeyValue("");
-      console.log("aaa");
     }
 
-    if (keyValue && monsterName[currentNumber] === keyValue) {
-      console.log("success");
+    if (keyValue && pokemonName[currentNumber] === keyValue) {
       setCurrentNumber(currentNumber + 1);
       setAnswerValue((val) => val + keyValue);
       setKeyValue("");
@@ -64,26 +56,25 @@ export const PlayTemplate = (): JSX.Element => {
 
   useEffect(() => {
     if (pokemon?.romaji === answerValue) {
-      const snapshot = monsterList.filter(
+      const snapshot = pokemonList.filter(
         (snapshot) => snapshot.romaji !== pokemon.romaji
       );
 
-      setNewMonster([...snapshot]);
+      setNewPokemon([...snapshot]);
       setCurrentNumber(0);
       alert("sucsees");
     }
   }, [answerValue]);
 
   useEffect(() => {
-    if (newMonster.length > 0) {
-      setPokemon(newMonster[Math.floor(Math.random() * monsterList.length)]);
+    if (newPokemon.length > 0) {
+      setPokemon(newPokemon[Math.floor(Math.random() * pokemonList.length)]);
     }
     setAnswerValue("");
-  }, [newMonster]);
+  }, [newPokemon]);
 
   const TestButton = () => {
     setTest(!test);
-    console.log(test);
   };
 
   return (
@@ -91,10 +82,9 @@ export const PlayTemplate = (): JSX.Element => {
       <h1>タイピングページ</h1>
       <button onClick={TestButton}>testButton</button>
       <p>ミスした数: {missCounter}</p>
-      <p>問題: {monsterName}</p>
+      <p>問題: {pokemonName}</p>
       <p css={typeText}>タイプ文字: {answerValue}</p>
-      {pokemon && <MonsterCard monsterItem={pokemon} />}
-      {/* <MonsterCard monsterItem={monster} /> */}
+      {pokemon && <PokemonCard monsterItem={pokemon} />}
     </div>
   );
 };

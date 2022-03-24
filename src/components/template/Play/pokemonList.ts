@@ -1,6 +1,6 @@
-import { Monster } from ".";
+import { Pokemon } from ".";
 
-export const monsterList: Monster[] = [
+export const pokemonList: Pokemon[] = [
   {
     imagePath: "/images/monsters/pulin.svg",
     japanese: "プリン",

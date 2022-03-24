@@ -1,10 +1,9 @@
-import { Monster } from "../../template/Play";
+import { Pokemon } from "../../template/Play";
 import Image from "next/image";
 
-export const MonsterCard = ({ monsterItem }: Monster): JSX.Element => {
+export const PokemonCard = ({ monsterItem }: Pokemon): JSX.Element => {
   return (
     <>
-      <p>fdf</p>
       <Image
         src={monsterItem.imagePath}
         alt={monsterItem.japanese}
@@ -17,4 +16,4 @@ export const MonsterCard = ({ monsterItem }: Monster): JSX.Element => {
   );
 };
 
-export default MonsterCard;
+export default PokemonCard;
