@@ -2,17 +2,17 @@ import { Pokemon } from ".";
 
 export const pokemonList: Pokemon[] = [
   {
-    imagePath: "/images/monsters/pulin.svg",
+    imagePath: "/images/pokemon/pulin.svg",
     japanese: "プリン",
     romaji: "pulin"
   },
   {
-    imagePath: "/images/monsters/yadon.svg",
+    imagePath: "/images/pokemon/yadon.svg",
     japanese: "ヤドン",
     romaji: "yadon"
   },
   {
-    imagePath: "/images/monsters/menokurage.svg",
+    imagePath: "/images/pokemon/menokurage.svg",
     japanese: "メノクラゲ",
     romaji: "menokurage"
   }
