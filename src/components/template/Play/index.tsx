@@ -8,6 +8,14 @@ const typeText = css`
   padding: 20px;
   border: solid 1px #000;
   width: 500px;
+  margin: 0 auto;
+`;
+
+const play = css`
+  text-align: center;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
 `;
 
 export interface Pokemon {
@@ -69,22 +77,28 @@ export const PlayTemplate = (): JSX.Element => {
   useEffect(() => {
     if (newPokemon.length > 0) {
       setPokemon(newPokemon[Math.floor(Math.random() * pokemonList.length)]);
+    } else {
+      // alert("終了です");
     }
     setAnswerValue("");
   }, [newPokemon]);
 
   const TestButton = () => {
     setTest(!test);
+    console.log(pokemon);
   };
 
   return (
-    <div>
+    <div css={play}>
       <h1>タイピングページ</h1>
       <button onClick={TestButton}>testButton</button>
       <p>ミスした数: {missCounter}</p>
       <p>問題: {pokemonName}</p>
       <p css={typeText}>タイプ文字: {answerValue}</p>
-      {pokemon && <PokemonCard monsterItem={pokemon} />}
+      {/* {pokemon && <PokemonCard PokemonItem={pokemon} />} */}
+      {pokemonList.map((pokemonItem, i) => {
+        return <PokemonCard key={i} pokemonItem={pokemonItem} />;
+      })}
     </div>
   );
 };
