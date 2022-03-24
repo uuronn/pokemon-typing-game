@@ -2,21 +2,7 @@ import { css } from "@emotion/react";
 import { pokemonList } from "./pokemonList";
 import { useEffect, useState } from "react";
 import { PokemonCard } from "~/src/components/shared/PokemonCard";
-
-const typeText = css`
-  font-size: 20px;
-  padding: 20px;
-  border: solid 1px #000;
-  width: 500px;
-  margin: 0 auto;
-`;
-
-const play = css`
-  text-align: center;
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-`;
+import * as styles from "./styles";
 
 export interface Pokemon {
   imagePath: string;
@@ -89,16 +75,18 @@ export const PlayTemplate = (): JSX.Element => {
   };
 
   return (
-    <div css={play}>
+    <div css={styles.play}>
       <h1>タイピングページ</h1>
       <button onClick={TestButton}>testButton</button>
       <p>ミスした数: {missCounter}</p>
       <p>問題: {pokemonName}</p>
-      <p css={typeText}>タイプ文字: {answerValue}</p>
-      {/* {pokemon && <PokemonCard PokemonItem={pokemon} />} */}
-      {pokemonList.map((pokemonItem, i) => {
+      <p css={styles.typeText}>タイプ文字: {answerValue}</p>
+      {pokemon && (
+        <PokemonCard css={styles.pokemonCard} PokemonItem={pokemon} />
+      )}
+      {/* {pokemonList.map((pokemonItem, i) => {
         return <PokemonCard key={i} pokemonItem={pokemonItem} />;
-      })}
+      })} */}
     </div>
   );
 };
