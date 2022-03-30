@@ -3,22 +3,30 @@ import Image from "next/image";
 import { ComponentPropsWithRef } from "react";
 import * as styles from "./styles";
 
-export interface PokemonCardProps extends ComponentPropsWithRef<"li"> {
+export interface PokemonCardProps extends ComponentPropsWithRef<"div"> {
   pokemonItem: Pokemon;
+  answerValue: string;
 }
 
-export const PokemonCard = ({ pokemonItem }: PokemonCardProps): JSX.Element => {
+export const PokemonCard = ({
+  pokemonItem,
+  answerValue
+}: PokemonCardProps): JSX.Element => {
+  if (answerValue === pokemonItem?.romaji) {
+    alert("sucsees");
+  }
+
   return (
-    <>
-      <Image
-        src={pokemonItem.imagePath}
-        alt={pokemonItem.japanese}
+    <div css={styles.pokemonCard}>
+      <img
+        src={pokemonItem?.imagePath}
+        alt={pokemonItem?.japanese}
         width={230}
         height={200}
       />
-      <p css={styles.name}>{pokemonItem.japanese}</p>
-      <p css={styles.name}>{pokemonItem.romaji}</p>
-    </>
+      <p css={styles.name}>{pokemonItem?.japanese}</p>
+      <p css={styles.name}>{pokemonItem?.romaji}</p>
+    </div>
   );
 };
 
