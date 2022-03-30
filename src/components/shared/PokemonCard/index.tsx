@@ -5,17 +5,9 @@ import * as styles from "./styles";
 
 export interface PokemonCardProps extends ComponentPropsWithRef<"div"> {
   pokemonItem: Pokemon;
-  answerValue: string;
 }
 
-export const PokemonCard = ({
-  pokemonItem,
-  answerValue
-}: PokemonCardProps): JSX.Element => {
-  if (answerValue === pokemonItem?.romaji) {
-    alert("sucsees");
-  }
-
+export const PokemonCard = ({ pokemonItem }: PokemonCardProps): JSX.Element => {
   return (
     <div css={styles.pokemonCard}>
       <img
