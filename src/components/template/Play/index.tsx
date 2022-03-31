@@ -16,10 +16,24 @@ export const PlayTemplate = (): JSX.Element => {
   const [pokemonName, setPokemonName] = useState<string[]>([]);
   const [missCounter, setMissCounter] = useState<number>(0);
   const [currentNumber, setCurrentNumber] = useState<number>(0);
+  const [correctCounter, setCorrectCounter] = useState<number>(0);
+  const [time, setTime] = useState<number>(5);
 
   const keyDown = (e: KeyboardEvent) => {
     setKeyValue(e.key);
   };
+
+  useEffect(() => {
+    const id = setTimeout(() => {
+      setTime((count) => count - 1);
+    }, 1000);
+
+    if (time === 0) {
+      alert("終了");
+      clearTimeout(id);
+      console.log(correctCounter);
+    }
+  }, [time]);
 
   useEffect(() => {
     window.addEventListener("keydown", keyDown);
@@ -45,7 +59,8 @@ export const PlayTemplate = (): JSX.Element => {
   useEffect(() => {
     if (answerValue === pokemon?.romaji) {
       setAnswerValue("");
-      alert("sucsess");
+      // alert("success");
+      setCorrectCounter((count) => count + 1);
       setPokemon(pokemonList[Math.floor(Math.random() * pokemonList.length)]);
       setCurrentNumber(0);
     }
@@ -56,7 +71,9 @@ export const PlayTemplate = (): JSX.Element => {
       <PokemonCard pokemonItem={pokemon} />
       <p>prevType: {keyValue}</p>
       <p>Answer: {answerValue}</p>
-      <p>ミスした数: {missCounter}</p>
+      <p>miss: {missCounter}</p>
+      <p>correct: {correctCounter}</p>
+      <p>残り: {time}</p>
     </div>
   );
 };
