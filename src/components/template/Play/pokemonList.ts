@@ -4,16 +4,19 @@ export const pokemonList: Pokemon[] = [
   {
     japanese: "プリン",
     imagePath: "/images/pokemon/pulin.svg",
-    romaji: "pulin"
+    romaji: "pulin",
+    voice: "/voices/pulin.m4a"
   },
   {
     japanese: "ヤドン",
     imagePath: "/images/pokemon/yadon.svg",
-    romaji: "yadon"
+    romaji: "yadon",
+    voice: "/voices/pulin.m4a"
   },
   {
     japanese: "メノクラゲ",
     imagePath: "/images/pokemon/menokurage.svg",
-    romaji: "menokurage"
+    romaji: "menokurage",
+    voice: "/voices/pulin.m4a"
   }
 ];

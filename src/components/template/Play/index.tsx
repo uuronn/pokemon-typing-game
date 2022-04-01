@@ -7,6 +7,7 @@ export interface Pokemon {
   imagePath: string;
   japanese: string;
   romaji: string;
+  voice: string;
 }
 
 export const PlayTemplate = (): JSX.Element => {
@@ -17,7 +18,7 @@ export const PlayTemplate = (): JSX.Element => {
   const [missCounter, setMissCounter] = useState<number>(0);
   const [currentNumber, setCurrentNumber] = useState<number>(0);
   const [correctCounter, setCorrectCounter] = useState<number>(0);
-  const [time, setTime] = useState<number>(5);
+  const [time, setTime] = useState<number>(30);
 
   const keyDown = (e: KeyboardEvent) => {
     setKeyValue(e.key);

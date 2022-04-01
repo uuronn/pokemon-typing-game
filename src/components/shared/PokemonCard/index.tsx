@@ -18,6 +18,7 @@ export const PokemonCard = ({ pokemonItem }: PokemonCardProps): JSX.Element => {
       />
       <p css={styles.name}>{pokemonItem?.japanese}</p>
       <p css={styles.name}>{pokemonItem?.romaji}</p>
+      <audio controls src={pokemonItem?.voice}></audio>
     </div>
   );
 };
