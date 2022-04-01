@@ -1,100 +1,80 @@
-import { css } from "@emotion/react";
-import { monsterList } from "./monsterList";
+import { pokemonList } from "./pokemonList";
 import { useEffect, useState } from "react";
-import { MonsterCard } from "~/src/components/shared/MonsterCard";
+import { PokemonCard } from "~/src/components/shared/PokemonCard";
+import * as styles from "./styles";
 
-const typeText = css`
-  font-size: 20px;
-  padding: 20px;
-  border: solid 1px #000;
-  width: 500px;
-`;
-
-export interface Monster {
+export interface Pokemon {
   imagePath: string;
   japanese: string;
   romaji: string;
+  voice: string;
 }
 
 export const PlayTemplate = (): JSX.Element => {
-  const [keyValue, setKeyValue] = useState<string>();
-  // const [monster, setMonster] = useState<Monster>();
-  const [newMonster, setNewMonster] = useState<Monster[]>([]);
-  const [monsterName, setMonsterName] = useState<string[]>([]);
-  const [missCounter, setMissCounter] = useState<number>(0);
+  const [keyValue, setKeyValue] = useState<string>("");
   const [answerValue, setAnswerValue] = useState<string>("");
+  const [pokemon, setPokemon] = useState<Pokemon>();
+  const [pokemonName, setPokemonName] = useState<string[]>([]);
+  const [missCounter, setMissCounter] = useState<number>(0);
   const [currentNumber, setCurrentNumber] = useState<number>(0);
-  const [test, setTest] = useState<boolean>(false);
-  const [pokemon, setPokemon] = useState<Monster>();
+  const [correctCounter, setCorrectCounter] = useState<number>(0);
+  const [time, setTime] = useState<number>(30);
 
   const keyDown = (e: KeyboardEvent) => {
     setKeyValue(e.key);
   };
 
   useEffect(() => {
-    window.addEventListener("keydown", keyDown);
-    console.log(
-      "monsterList",
-      monsterList[Math.floor(Math.random() * monsterList.length)]
-    );
+    const id = setTimeout(() => {
+      setTime((count) => count - 1);
+    }, 1000);
 
-    setPokemon(monsterList[Math.floor(Math.random() * monsterList.length)]);
+    if (time === 0) {
+      alert("終了");
+      clearTimeout(id);
+      console.log(correctCounter);
+    }
+  }, [time]);
+
+  useEffect(() => {
+    window.addEventListener("keydown", keyDown);
+    setPokemon(pokemonList[Math.floor(Math.random() * pokemonList.length)]);
   }, []);
 
   useEffect(() => {
-    if (pokemon) {
-      setMonsterName(pokemon.romaji.split(""));
-    }
-  }, [pokemon]);
-
-  useEffect(() => {
-    if (keyValue !== "" && monsterName[currentNumber] !== keyValue) {
-      setMissCounter((val) => val + 1);
+    if (keyValue !== "" && pokemonName[currentNumber] !== keyValue) {
+      setMissCounter((count) => count + 1);
       setKeyValue("");
-      console.log("aaa");
-    }
-
-    if (keyValue && monsterName[currentNumber] === keyValue) {
-      console.log("success");
+    } else if (keyValue && pokemonName[currentNumber] === keyValue) {
       setCurrentNumber(currentNumber + 1);
       setAnswerValue((val) => val + keyValue);
-      setKeyValue("");
     }
   }, [keyValue]);
 
   useEffect(() => {
-    if (pokemon?.romaji === answerValue) {
-      const snapshot = monsterList.filter(
-        (snapshot) => snapshot.romaji !== pokemon.romaji
-      );
+    if (pokemon) {
+      setPokemonName(pokemon.romaji.split(""));
+    }
+  }, [pokemon]);
 
-      setNewMonster([...snapshot]);
+  useEffect(() => {
+    if (answerValue === pokemon?.romaji) {
+      setAnswerValue("");
+      // alert("success");
+      setCorrectCounter((count) => count + 1);
+      setPokemon(pokemonList[Math.floor(Math.random() * pokemonList.length)]);
       setCurrentNumber(0);
-      alert("sucsees");
     }
   }, [answerValue]);
 
-  useEffect(() => {
-    if (newMonster.length > 0) {
-      setPokemon(newMonster[Math.floor(Math.random() * monsterList.length)]);
-    }
-    setAnswerValue("");
-  }, [newMonster]);
-
-  const TestButton = () => {
-    setTest(!test);
-    console.log(test);
-  };
-
   return (
-    <div>
-      <h1>タイピングページ</h1>
-      <button onClick={TestButton}>testButton</button>
-      <p>ミスした数: {missCounter}</p>
-      <p>問題: {monsterName}</p>
-      <p css={typeText}>タイプ文字: {answerValue}</p>
-      {pokemon && <MonsterCard monsterItem={pokemon} />}
-      {/* <MonsterCard monsterItem={monster} /> */}
+    <div css={styles.play}>
+      <PokemonCard pokemonItem={pokemon} />
+      <p>prevType: {keyValue}</p>
+      <p>Answer: {answerValue}</p>
+      <p>miss: {missCounter}</p>
+      <p>correct: {correctCounter}</p>
+      <p>残り: {time}</p>
     </div>
   );
 };
