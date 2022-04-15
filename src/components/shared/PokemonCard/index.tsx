@@ -22,5 +22,3 @@ export const PokemonCard = ({ pokemonItem }: PokemonCardProps): JSX.Element => {
     </div>
   );
 };
-
-export default PokemonCard;
