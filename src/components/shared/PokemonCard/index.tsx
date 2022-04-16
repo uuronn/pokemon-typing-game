@@ -4,7 +4,7 @@ import { ComponentPropsWithRef } from "react";
 import * as styles from "./styles";
 
 export interface PokemonCardProps extends ComponentPropsWithRef<"div"> {
-  pokemonItem: Pokemon;
+  pokemonItem?: Pokemon;
 }
 
 export const PokemonCard = ({ pokemonItem }: PokemonCardProps): JSX.Element => {
@@ -22,5 +22,3 @@ export const PokemonCard = ({ pokemonItem }: PokemonCardProps): JSX.Element => {
     </div>
   );
 };
-
-export default PokemonCard;
