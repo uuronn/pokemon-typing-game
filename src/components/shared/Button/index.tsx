@@ -1,6 +1,6 @@
-import { css } from '@emotion/react'
-import Link from 'next/link'
-import { ComponentPropsWithRef, ForwardedRef } from 'react'
+import { css } from "@emotion/react";
+import Link from "next/link";
+import { ComponentPropsWithRef } from "react";
 
 const button = css`
   display: block;
@@ -20,28 +20,13 @@ const button = css`
 `;
 
 export interface ButtonProps extends ComponentPropsWithRef<"a"> {
-  forwardRef?: ForwardedRef<HTMLAnchorElement>;
   path: string;
 }
 
-export const Button = ({
-  forwardRef,
-  children,
-  path,
-  ...props
-}: ButtonProps): JSX.Element => {
-
+export const Button = ({ children, path }: ButtonProps): JSX.Element => {
   return (
     <Link href={path}>
-      <a
-        css={button}
-        ref={forwardRef}
-        {...props}
-      >
-        {children}
-      </a>
+      <a css={button}>{children}</a>
     </Link>
-  )
-}
-
-export default Button;
+  );
+};
