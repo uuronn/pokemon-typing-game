@@ -1,6 +1,11 @@
-import type { NextPage } from 'next'
-import RankingTemplate from '~/src/components/template/Ranking'
+import type { NextPage } from "next";
 
-const ranking: NextPage = () => <RankingTemplate />
+const Ranking: NextPage = () => {
+  return (
+    <div>
+      <p>ランキングページ</p>
+    </div>
+  );
+};
 
-export default ranking
+export default Ranking;
