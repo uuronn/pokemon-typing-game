@@ -6,7 +6,6 @@ export const pokemonCard = css`
   width: 400px;
   height: 350px;
   padding: 0 10px;
-  // background: gray;
   list-style: none;
   margin: 0 auto;
 `;

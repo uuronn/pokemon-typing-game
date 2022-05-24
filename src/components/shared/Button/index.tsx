@@ -2,6 +2,18 @@ import { css } from "@emotion/react";
 import Link from "next/link";
 import { ComponentPropsWithRef } from "react";
 
+export interface ButtonProps extends ComponentPropsWithRef<"a"> {
+  path: string;
+}
+
+export const Button = ({ children, path }: ButtonProps): JSX.Element => {
+  return (
+    <Link href={path}>
+      <a css={button}>{children}</a>
+    </Link>
+  );
+};
+
 const button = css`
   display: block;
   width: 200px;
@@ -18,15 +30,3 @@ const button = css`
     background: green;
   }
 `;
-
-export interface ButtonProps extends ComponentPropsWithRef<"a"> {
-  path: string;
-}
-
-export const Button = ({ children, path }: ButtonProps): JSX.Element => {
-  return (
-    <Link href={path}>
-      <a css={button}>{children}</a>
-    </Link>
-  );
-};
