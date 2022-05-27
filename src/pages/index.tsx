@@ -1,8 +1,10 @@
 import type { NextPage } from "next";
 import { css } from "@emotion/react";
 import { Button } from "~/src/components/shared/Button";
+import { firebaseConfig } from "../constant";
 
 export const Home: NextPage = (): JSX.Element => {
+  console.log(firebaseConfig.apiKey);
   return (
     <main css={main}>
       <h1 css={title}>typing game</h1>
