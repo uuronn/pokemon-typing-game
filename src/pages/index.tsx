@@ -2,9 +2,38 @@ import type { NextPage } from "next";
 import { css } from "@emotion/react";
 import { Button } from "~/src/components/shared/Button";
 import { firebaseConfig } from "../constant";
+import { useEffect, useState } from "react";
+import { doc, getDoc, getDocs, collection } from "firebase/firestore";
+import { db } from "../infra/firebase";
 
 export const Home: NextPage = (): JSX.Element => {
-  console.log(firebaseConfig.apiKey);
+  const [img, setImg] = useState<string>();
+
+  useEffect(() => {
+    const pokemon = async () => {
+      const querySnapshot = await getDocs(collection(db, "pokemon"));
+      setImg(
+        querySnapshot.docs[
+          Math.floor(Math.random() * querySnapshot.docs.length)
+        ].data().image
+      );
+      // console.log(
+      //   querySnapshot.docs[
+      //     Math.floor(Math.random() * querySnapshot.docs.length)
+      //   ].data().image
+      // );
+      // querySnapshot.forEach((doc) => {
+      //   console.log(typeof doc.data());
+      //   const pokemon: object[] = doc.
+      //   // doc.data() is never undefined for query doc snapshots
+      //   // console.log(doc.id, " => ", doc.data());
+      // });
+    };
+    pokemon();
+  }, []);
+
+  // useEffect(() => {}, [img]);
+
   return (
     <main css={main}>
       <h1 css={title}>typing game</h1>
@@ -14,6 +43,8 @@ export const Home: NextPage = (): JSX.Element => {
         <Button path="/ranking">ランキング</Button>
         <Button path="/setting">設定(せってい)</Button>
       </div>
+      {/* <img src={img?.url} alt="" /> */}
+      <img src={img} />
       <div css={monsterRight}></div>
     </main>
   );
