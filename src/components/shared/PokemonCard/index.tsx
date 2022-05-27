@@ -1,4 +1,4 @@
-import { Pokemon } from "../../template/Play";
+import { Pokemon } from "~/src/pages/play";
 import { ComponentPropsWithRef } from "react";
 import * as styles from "./styles";
 
