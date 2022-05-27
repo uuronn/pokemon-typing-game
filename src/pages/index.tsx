@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import { css } from "@emotion/react";
 import { Button } from "~/src/components/shared/Button";
 
-export const Home: NextPage = (): JSX.Element => {
+export const Home: NextPage = () => {
   return (
     <main css={main}>
       <h1 css={title}>typing game</h1>
