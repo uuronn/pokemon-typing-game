@@ -1,7 +1,6 @@
 import type { NextPage } from "next";
 import { css } from "@emotion/react";
 import { Button } from "~/src/components/shared/Button";
-import { firebaseConfig } from "../constant";
 import { useEffect, useState } from "react";
 import { doc, getDoc, getDocs, collection } from "firebase/firestore";
 import { db } from "../infra/firebase";
@@ -37,15 +36,19 @@ export const Home: NextPage = (): JSX.Element => {
   return (
     <main css={main}>
       <h1 css={title}>typing game</h1>
-      <div css={monsterReft}></div>
+      <div css={monsterReft}>
+        <img src={img} />
+      </div>
       <div>
         <Button path="/play">遊ぶ(あそぶ)</Button>
         <Button path="/ranking">ランキング</Button>
         <Button path="/setting">設定(せってい)</Button>
       </div>
       {/* <img src={img?.url} alt="" /> */}
-      <img src={img} />
-      <div css={monsterRight}></div>
+      {/* <img src={img} /> */}
+      <div css={monsterRight}>
+        <img src={img} />
+      </div>
     </main>
   );
 };
@@ -53,7 +56,6 @@ export const Home: NextPage = (): JSX.Element => {
 export default Home;
 
 const main = css`
-  background: gray;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
@@ -74,7 +76,7 @@ const monsterReft = css`
   transition: 0.3s;
 
   &:hover {
-    transform: rotate(-45deg);
+    transform: rotate(45deg);
   }
 `;
 
@@ -88,6 +90,6 @@ const monsterRight = css`
   transition: 0.3s;
 
   &:hover {
-    transform: rotate(45deg);
+    transform: rotate(-45deg);
   }
 `;

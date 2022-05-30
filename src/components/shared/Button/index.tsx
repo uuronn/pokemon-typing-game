@@ -6,10 +6,16 @@ export interface ButtonProps extends ComponentPropsWithRef<"a"> {
   path: string;
 }
 
-export const Button = ({ children, path }: ButtonProps): JSX.Element => {
+export const Button = ({
+  children,
+  path,
+  ...props
+}: ButtonProps): JSX.Element => {
   return (
     <Link href={path}>
-      <a css={button}>{children}</a>
+      <a css={button} {...props}>
+        {children}
+      </a>
     </Link>
   );
 };
