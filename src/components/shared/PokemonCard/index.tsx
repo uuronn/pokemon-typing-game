@@ -1,5 +1,5 @@
-import { Pokemon } from "~/src/pages/play";
 import { ComponentPropsWithRef } from "react";
+import { Pokemon } from "~/types";
 import * as styles from "./styles";
 
 export interface PokemonCardProps extends ComponentPropsWithRef<"div"> {

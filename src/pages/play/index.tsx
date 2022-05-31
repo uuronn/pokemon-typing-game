@@ -3,13 +3,7 @@ import { useEffect, useState } from "react";
 import { PokemonCard } from "~/src/components/shared/PokemonCard";
 import * as styles from "./styles";
 import type { NextPage } from "next";
-
-export interface Pokemon {
-  imagePath: string;
-  japanese: string;
-  romaji: string;
-  voice: string;
-}
+import { Pokemon } from "~/types";
 
 const Play: NextPage = () => {
   const [keyValue, setKeyValue] = useState<string>("");

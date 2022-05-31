@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import { css } from "@emotion/react";
-import { Pokemon } from "./play";
+import { Pokemon } from "~/types";
 import { useState, useEffect } from "react";
 import { pokemonList } from "./play/pokemonList";
 

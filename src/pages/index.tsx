@@ -36,7 +36,7 @@ export const Home: NextPage = (): JSX.Element => {
 
   return (
     <main css={main}>
-      <h1 css={title}>typing game</h1>
+      <h1 css={title}>ポケモン タイピングゲーム</h1>
       <div css={monsterReft}>
         <img src={img} />
       </div>
