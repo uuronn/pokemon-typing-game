@@ -8,7 +8,7 @@ export const LoginContent = ({ ...props }): JSX.Element => {
   const [uid, setUid] = useState<string>("");
   const provider = new GoogleAuthProvider();
 
-  const login = async () => {
+  const signIn = async () => {
     try {
       const res = await signInWithPopup(auth, provider);
 
@@ -23,7 +23,7 @@ export const LoginContent = ({ ...props }): JSX.Element => {
   return (
     <>
       <p>login: ${uid}</p>
-      <button onClick={login} css={button} {...props}>
+      <button onClick={signIn} css={button} {...props}>
         <GoogleIcon />
         ログイン
       </button>
