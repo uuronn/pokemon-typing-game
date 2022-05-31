@@ -1,12 +1,33 @@
 import { css } from "@emotion/react";
 import { GoogleIcon } from "~/src/components/shared/icons/GoogleIcon";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { useState } from "react";
+import { auth } from "~/src/infra/firebase";
 
-export const LoginContent = ({ ...props }) => {
+export const LoginContent = ({ ...props }): JSX.Element => {
+  const [uid, setUid] = useState<string>("");
+  const provider = new GoogleAuthProvider();
+
+  const login = async () => {
+    try {
+      const res = await signInWithPopup(auth, provider);
+
+      if (!res) throw new Error("res取れてないよ");
+
+      setUid(res.user.uid);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
-    <button css={button} {...props}>
-      <GoogleIcon />
-      ログイン
-    </button>
+    <>
+      <p>login: ${uid}</p>
+      <button onClick={login} css={button} {...props}>
+        <GoogleIcon />
+        ログイン
+      </button>
+    </>
   );
 };
 
