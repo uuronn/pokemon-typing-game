@@ -4,6 +4,7 @@ import { Button } from "~/src/components/shared/Button";
 import { useEffect, useState } from "react";
 import { doc, getDoc, getDocs, collection } from "firebase/firestore";
 import { db } from "../infra/firebase";
+import { LoginContent } from "../components/domain/auth/LoginContent";
 
 export const Home: NextPage = (): JSX.Element => {
   const [img, setImg] = useState<string>();
@@ -46,6 +47,7 @@ export const Home: NextPage = (): JSX.Element => {
       </div>
       {/* <img src={img?.url} alt="" /> */}
       {/* <img src={img} /> */}
+      <LoginContent css={loginContent} />
       <div css={monsterRight}>
         <img src={img} />
       </div>
@@ -92,4 +94,11 @@ const monsterRight = css`
   &:hover {
     transform: rotate(-45deg);
   }
+`;
+
+const loginContent = css`
+  position: fixed;
+  top: 10px;
+  right: 20px;
+  z-index: 100;
 `;
